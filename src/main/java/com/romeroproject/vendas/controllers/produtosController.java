@@ -3,6 +3,7 @@ package com.romeroproject.vendas.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,10 +29,10 @@ public class produtosController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public produtos findById(@PathVariable Long id){
-		produtos result = repository.findById(id).get();
-		System.out.println("acertou!");
-		return result;
+	public ResponseEntity<produtos> findById(@PathVariable Long id){
+		return repository.findById(id)
+				.map(produtos->ResponseEntity.ok(produtos))
+				.orElse(ResponseEntity.notFound().build());
 		
 	}
 	

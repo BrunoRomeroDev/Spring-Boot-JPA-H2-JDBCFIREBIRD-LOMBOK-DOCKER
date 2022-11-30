@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+
 @Entity
 @Table(name = "produtos")
 public class produtos {
@@ -13,6 +15,7 @@ public class produtos {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		private String name;
+		private String descricao;
 		
 		public produtos() {
 			
@@ -32,6 +35,14 @@ public class produtos {
 
 		public void setName(String name) {
 			this.name = name;
+		}
+		
+		public String getDescricao() {
+			return descricao;
+		}
+
+		public void setDescricao(String descricao) {
+			this.descricao = descricao;
 		}
 		
 }
